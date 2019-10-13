@@ -13,11 +13,49 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('extension.helloWorld', () => {
+	let disposable = vscode.commands.registerCommand('codeceptrunner.runTestScenario', () => {
 		// The code you place here will be executed every time your command is executed
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World!');
+		//vscode.window.showInformationMessage('Hello World!');
+		const workspace = vscode.workspace.workspaceFolders;
+		if(workspace) {
+			let editor = vscode.window.activeTextEditor;
+			if (!editor) {
+				return;
+			}
+
+        	var document = editor.document;
+			var selection = editor.selection;
+			
+			if(!selection || !selection.active) {
+				return;
+			}
+
+			var textBeforeSelection = document.getText(new vscode.Range(0, 0, selection.end.line + 1, 0));
+
+			if(textBeforeSelection.indexOf('Scenario') === -1) {
+				return;
+			}
+
+			const scenarios = textBeforeSelection.split('Scenario');
+			const line = scenarios[scenarios.length - 1];
+			const matches = line.match(/\(([^,]+),/);
+
+			if(!matches) {
+				return;
+			}
+
+			const name = matches[1];
+
+			let terminal = vscode.window.activeTerminal;
+			if(!terminal) {
+				terminal = vscode.window.createTerminal();
+			}
+			
+			terminal.show();
+			terminal.sendText(`npx codeceptjs run --steps --grep ${name}`);
+		}
 	});
 
 	context.subscriptions.push(disposable);

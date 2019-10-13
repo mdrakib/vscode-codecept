@@ -10,16 +10,31 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"onLanguage:javascript"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
+				"command": "codeceptrunner.runTestScenario",
+				"title": "Codecept: Run Scenario"
 			}
-		]
+		],
+		"keybindings": [
+            {
+                "command": "codeceptrunner.runTestScenario",
+                "key": "CTRL+Alt+C",
+                "mac": "CMD+Alt+C"
+            }
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"command": "codeceptrunner.runTestScenario",
+					"group": "codeceptrunner"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
