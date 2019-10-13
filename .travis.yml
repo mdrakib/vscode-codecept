@@ -6,3 +6,6 @@ install:
   - npm install
 script:
   - vsce publish -p $token
+branches:
+  only:
+  - master
