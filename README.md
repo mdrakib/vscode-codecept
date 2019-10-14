@@ -1,9 +1,12 @@
-# Codecept VSCode Extension
+# Codecept VSCode Extension [![Build Status](https://travis-ci.org/mdrakib/vscode-codecept.svg?branch=master)](https://travis-ci.org/mdrakib/vscode-codecept)
+
+Run codecept test from editor window
 
 ## Features
 
-* Run codecept test from editor window
-* Keyboard shortcut to start test `Ctrl+Alt+C`
+* Keyboard shortcut to start test in Chrome: `Ctrl+Alt+C`
+* Keyboard shortcut to start test in IE: `Ctrl+Alt+I`
+* Editor context menu shows options to run test in Chrome or IE
 
 ## Requirements
 
@@ -19,7 +22,9 @@ No configuration required.
 
 ## Release Notes
 
-Initial version
+### 1.0.4
+
+Bug fix - create incorrect terminal when 'cmd' is default terminal
 
 ### 1.0.1
 

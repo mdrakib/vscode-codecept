@@ -2,7 +2,7 @@
 	"name": "vscode-codecept",
 	"displayName": "vscode-codecept",
 	"description": "Codecept test runner",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"publisher": "Rakib",
 	"repository": {
 		"type": "git",

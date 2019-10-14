@@ -74,7 +74,7 @@ class CodeceptRunner {
 		const name = matches[1];
 
 		let terminal = vscode.window.activeTerminal;
-		if(!terminal || terminal.name === "powershell") {
+		if(!terminal || terminal.name !== "powershell") {
 			terminal = vscode.window.createTerminal('powershell', 'powershell.exe');
 		}
 
