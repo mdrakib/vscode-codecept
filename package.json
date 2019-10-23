@@ -2,7 +2,7 @@
 	"name": "vscode-codecept",
 	"displayName": "vscode-codecept",
 	"description": "Codecept test runner",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"publisher": "Rakib",
 	"repository": {
 		"type": "git",
@@ -38,7 +38,7 @@
 			{
 				"command": "codeceptrunner.runTestScenarioInIE",
 				"key": "CTRL+Alt+I",
-				"mac": "CMD+Alt+I"
+				"when": "process.platform === 'win32'"
 			}
 		],
 		"menus": {
@@ -49,7 +49,8 @@
 				},
 				{
 					"command": "codeceptrunner.runTestScenarioInIE",
-					"group": "codeceptrunner"
+					"group": "codeceptrunner",
+					"when": "process.platform === 'win32'"
 				}
 			]
 		}

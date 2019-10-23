@@ -22,6 +22,10 @@ No configuration required.
 
 ## Release Notes
 
+### 1.0.5
+
+Add mac support
+
 ### 1.0.4
 
 Bug fix - create incorrect terminal when 'cmd' is default terminal

@@ -73,9 +73,16 @@ class CodeceptRunner {
 
 		const name = matches[1];
 
+		let defaultTerminal = 'bash';
+		const isWindows = process.platform === 'win32';
+
+		if (isWindows) {
+			defaultTerminal = 'powershell';
+		}
+
 		let terminal = vscode.window.activeTerminal;
-		if(!terminal || terminal.name !== "powershell") {
-			terminal = vscode.window.createTerminal('powershell', 'powershell.exe');
+		if (!terminal || terminal.name !== defaultTerminal) {
+			terminal = vscode.window.createTerminal(defaultTerminal, defaultTerminal);
 		}
 
 		const configFileName = 'codecept.conf.js';
@@ -95,7 +102,11 @@ class CodeceptRunner {
 
 		const overrideConfig: any = { helpers: { } };
 		overrideConfig.helpers[key] = { browser };
-		const override = JSON.stringify(overrideConfig).replace(/"/g, '"""');
+		let override = JSON.stringify(overrideConfig);
+		
+		if (isWindows) {
+			override = override.replace(/"/g, '"""');
+		}
 		
 		terminal.show();
 		terminal.sendText(`npx codeceptjs run --steps --grep ${name} --override '${override}'`);
