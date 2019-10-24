@@ -82,7 +82,11 @@ class CodeceptRunner {
 
 		let terminal = vscode.window.activeTerminal;
 		if (!terminal || terminal.name !== defaultTerminal) {
-			terminal = vscode.window.createTerminal(defaultTerminal, defaultTerminal);
+			let shellPath = defaultTerminal;
+			if (isWindows) {
+				shellPath += ".exe";
+			}
+			terminal = vscode.window.createTerminal(defaultTerminal, shellPath);
 		}
 
 		const configFileName = 'codecept.conf.js';
@@ -109,6 +113,6 @@ class CodeceptRunner {
 		}
 		
 		terminal.show();
-		terminal.sendText(`npx codeceptjs run --steps --grep ${name} --override '${override}'`);
+		terminal.sendText(`node ./node_modules/codeceptjs/bin/codecept.js run --steps --grep ${name} --override '${override}'`);
 	}
 }

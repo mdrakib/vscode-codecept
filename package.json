@@ -38,7 +38,7 @@
 			{
 				"command": "codeceptrunner.runTestScenarioInIE",
 				"key": "CTRL+Alt+I",
-				"when": "process.platform === 'win32'"
+				"when": "isWindows"
 			}
 		],
 		"menus": {
@@ -50,7 +50,7 @@
 				{
 					"command": "codeceptrunner.runTestScenarioInIE",
 					"group": "codeceptrunner",
-					"when": "process.platform === 'win32'"
+					"when": "isWindows"
 				}
 			]
 		}

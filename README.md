@@ -22,7 +22,7 @@ No configuration required.
 
 ## Release Notes
 
-### 1.0.5
+### 1.0.6
 
 Add mac support
 
