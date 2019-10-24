@@ -73,20 +73,21 @@ class CodeceptRunner {
 
 		const name = matches[1];
 
+		let terminal = vscode.window.activeTerminal;
 		let defaultTerminal = 'bash';
 		const isWindows = process.platform === 'win32';
 
 		if (isWindows) {
 			defaultTerminal = 'powershell';
-		}
-
-		let terminal = vscode.window.activeTerminal;
-		if (!terminal || terminal.name !== defaultTerminal) {
-			let shellPath = defaultTerminal;
-			if (isWindows) {
-				shellPath += ".exe";
+			if (terminal && terminal.name !== defaultTerminal) {
+				terminal = undefined;
 			}
-			terminal = vscode.window.createTerminal(defaultTerminal, shellPath);
+		}
+		
+		if (!terminal) {
+			terminal = isWindows 
+				? vscode.window.createTerminal(defaultTerminal, defaultTerminal + '.exe')
+				: vscode.window.createTerminal();
 		}
 
 		const configFileName = 'codecept.conf.js';
