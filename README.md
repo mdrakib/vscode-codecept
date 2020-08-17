@@ -4,6 +4,7 @@ Run codecept test from editor window
 
 ## Features
 
+* Keyboard shortcut to start test in default browser: `Ctrl+Alt+D`
 * Keyboard shortcut to start test in Chrome: `Ctrl+Alt+C`
 * Keyboard shortcut to start test in IE: `Ctrl+Alt+I`
 * Editor context menu shows options to run test in Chrome or IE
@@ -21,6 +22,10 @@ No configuration required.
 * Currently it only works for 'Scneario'.
 
 ## Release Notes
+
+### 1.0.7
+
+Add menu to run test using default configuration
 
 ### 1.0.6
 

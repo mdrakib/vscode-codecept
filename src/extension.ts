@@ -18,6 +18,10 @@ export function activate(context: vscode.ExtensionContext) {
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 
+	context.subscriptions.push(vscode.commands.registerCommand('codeceptrunner.runTestScenarioInDefaultBrowser', () => {
+		runner.runScenario('default');
+	}));
+
 	context.subscriptions.push(vscode.commands.registerCommand('codeceptrunner.runTestScenarioInIE', () => {
 		runner.runScenario('ie');
 	}));
@@ -105,15 +109,24 @@ class CodeceptRunner {
 			return;
 		}
 
-		const overrideConfig: any = { helpers: { } };
-		overrideConfig.helpers[key] = { browser };
-		let override = JSON.stringify(overrideConfig);
-		
-		if (isWindows) {
-			override = override.replace(/"/g, '"""');
+		let override = null;
+
+		if(browser !== 'default') {
+			const overrideConfig: any = { helpers: { } };
+			overrideConfig.helpers[key] = { browser };
+			override = JSON.stringify(overrideConfig);
+			
+			if (isWindows) {
+				override = override.replace(/"/g, '"""');
+			}
+		}
+
+		let cmd = `node ./node_modules/codeceptjs/bin/codecept.js run --steps --grep ${name}`;
+		if(override) {
+			cmd += ` --override '${override}'`;
 		}
 		
 		terminal.show();
-		terminal.sendText(`node ./node_modules/codeceptjs/bin/codecept.js run --steps --grep ${name} --override '${override}'`);
+		terminal.sendText(cmd);
 	}
 }

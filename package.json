@@ -2,7 +2,7 @@
 	"name": "vscode-codecept",
 	"displayName": "vscode-codecept",
 	"description": "Codecept test runner",
-	"version": "1.0.6",
+	"version": "1.0.7",
 	"publisher": "Rakib",
 	"repository": {
 		"type": "git",
@@ -21,6 +21,10 @@
 	"contributes": {
 		"commands": [
 			{
+				"command": "codeceptrunner.runTestScenarioInDefaultBrowser",
+				"title": "Codecept: Run Scenario in Default Browser"
+			},
+			{
 				"command": "codeceptrunner.runTestScenarioInChrome",
 				"title": "Codecept: Run Scenario in Chrome"
 			},
@@ -30,6 +34,11 @@
 			}
 		],
 		"keybindings": [
+			{
+				"command": "codeceptrunner.runTestScenarioInDefaultBrowser",
+				"key": "CTRL+Alt+D",
+				"mac": "CMD+Alt+D"
+			},
 			{
 				"command": "codeceptrunner.runTestScenarioInChrome",
 				"key": "CTRL+Alt+C",
@@ -43,6 +52,10 @@
 		],
 		"menus": {
 			"editor/context": [
+				{
+					"command": "codeceptrunner.runTestScenarioInDefaultBrowser",
+					"group": "codeceptrunner"
+				},
 				{
 					"command": "codeceptrunner.runTestScenarioInChrome",
 					"group": "codeceptrunner"
@@ -68,7 +81,7 @@
 		"@types/node": "^10.14.21",
 		"@types/vscode": "^1.39.0",
 		"glob": "^7.1.4",
-		"mocha": "^6.1.4",
+		"mocha": "^8.1.1",
 		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
 		"vscode-test": "^1.2.0"
